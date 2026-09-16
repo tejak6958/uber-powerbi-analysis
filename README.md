@@ -1,27 +1,28 @@
 
-# Uber Analysis — Short Project Overview
+# Uber Analytics & Ride Insights Dashboard
+An end-to-end Power BI project analyzing Uber trip data to identify ride demand patterns, peak booking hours, revenue trends, and spatial pickup/drop-off behavior.
 
-Project: Analysis of Uber trip data (bookings, fares, distances, pickup/drop patterns).
+Key Features & Insights
+Ride Trend Analysis: Tracks total bookings, trip distances, and average duration across different times of day.
 
-Data sources: `Uber Trip Details.xlsx` (trip-level) and `Location Table.xlsx` (location lookup).
+Geographic Mapping: Connects pickup and drop-off location IDs to real-world zones and boroughs for spatial visualization.
 
-Semantic model (key tables): `Trip Details`, `Location Table`, `Calendar Table`, multiple `LocalDateTable_*` helpers, and a `Dynamic Measure` table for selectable measures.
+Dynamic Metric Selection: Uses a parameter-driven measure table to allow interactive switching between key KPIs on visuals.
 
-Primary DAX patterns used:
-- aggregations: `SUM`, `DISTINCTCOUNT`, `AVERAGE`, `DIVIDE`;
-- row/context functions: `AVERAGEX`, `DATEDIFF`, `SELECTEDVALUE`, `LOOKUPVALUE`;
-- table functions: `SUMMARIZE`, `ADDCOLUMNS`, `TOPN`, `RANKX`;
-- formatting/strings: `FORMAT`, `CONCATENATE`, `CONCATENATEX`;
-- relationship control: `USERELATIONSHIP`.
+Revenue & Surge Tracking: Analyzes base fares, surge pricing patterns, and payment preferences (Cash vs. Card).
 
-Notable model features:
-- calculated columns for `Pickup Date`, `Pickup Hour`, and `Trip Type (Day/Night)`;
-- several hidden measures for cards/headers (Total Bookings, Total Bookings Value, Avg Trip Time, Total Trip Distance, etc.);
-- `Dynamic Measure` table provides a parameterized selector used to change displayed metrics and titles.
+Project Structure
+uber_Analysis.pbip: Main Power BI Project file.
 
-How to open:
-1. Open `uber_Analysis.pbip` with Power BI Desktop.
-2. Source files and exported JSON are under `uber_Analysis.Report/` and `uber_Analysis.SemanticModel/`.
+uber_Analysis.Report/: Visual layout, canvas pages, and formatting JSON files.
 
-If you want this even shorter or want a separate `DAX.md` listing each measure and its formula, tell me and I'll add it.
+uber_Analysis.SemanticModel/: Data model, relationships, and DAX calculations (TMDL).
 
+Data Modeling.png: Screenshot of the data model schema.
+
+Data Sources & Model
+Trip Details (Uber Trip Details.xlsx): Fact table containing trip IDs, timestamps, passenger counts, distance, payment types, and fare breakdown.
+
+Location Lookup (Location Table.xlsx): Dimension table mapping LocationID to Borough, Zone, and Service Zone.
+
+Relationships: Star-schema model linked via PULocationID / DOLocationID to LocationID, integrated with custom Calendar and Dynamic Measure tables.
