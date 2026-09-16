@@ -1,10 +1,3 @@
-
-![Main Heading](assets/main_heading.svg)
-
-![Dashboard Overview](overview_sc.png)
-![Time Insights](Time%20Sc.png)
-![Dashboard Info](Details.png)
-
 # 🚕 Uber Power BI Analysis
 
 An end-to-end **Power BI analytics project** focused on understanding Uber trip demand, revenue patterns, trip behaviour, and operational performance through interactive business intelligence.
