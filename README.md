@@ -1,28 +1,25 @@
 
 # Uber Analytics & Ride Insights Dashboard
-An end-to-end Power BI project analyzing Uber trip data to identify ride demand patterns, peak booking hours, revenue trends, and spatial pickup/drop-off behavior.
+Problem Statement & Objective
+Analyze Uber trip data to uncover demand patterns, evaluate fare dynamics, optimize route efficiency, and deliver actionable insights for pricing and resource allocation.
 
-Key Features & Insights
-Ride Trend Analysis: Tracks total bookings, trip distances, and average duration across different times of day.
+Technical Approach & Methodology
+Data Modeling: Built a Star-Schema model connecting the Trip Details fact table to Location Lookup and dynamic Calendar dimension tables via PULocationID / DOLocationID.
 
-Geographic Mapping: Connects pickup and drop-off location IDs to real-world zones and boroughs for spatial visualization.
+DAX & Dynamic Analytics: Developed custom DAX measures and field parameters to enable dynamic KPI switching across visual charts.
 
-Dynamic Metric Selection: Uses a parameter-driven measure table to allow interactive switching between key KPIs on visuals.
+Spatial & Temporal Analysis: Mapped numerical location IDs to actual boroughs and zones, analyzing booking trends across peak and off-peak hours.
 
-Revenue & Surge Tracking: Analyzes base fares, surge pricing patterns, and payment preferences (Cash vs. Card).
+UI/UX Navigation: Designed an interactive canvas with page navigators, dynamic bookmarks, and URL action buttons linking to source documentation.
 
-Project Structure
+Key Solutions Delivered
+Demand Identification: Pinpointed peak ride hours and high-volume pickup/drop-off zones for strategic driver placement.
+
+Revenue Breakdown: Evaluated base fare vs. surge pricing trends and analyzed payment mode distributions (Cash vs. Card).
+
+Repository Structure
 uber_Analysis.pbip: Main Power BI Project file.
 
-uber_Analysis.Report/: Visual layout, canvas pages, and formatting JSON files.
+uber_Analysis.Report/: Page layouts, visual configs, and visual theme settings.
 
-uber_Analysis.SemanticModel/: Data model, relationships, and DAX calculations (TMDL).
-
-Data Modeling.png: Screenshot of the data model schema.
-
-Data Sources & Model
-Trip Details (Uber Trip Details.xlsx): Fact table containing trip IDs, timestamps, passenger counts, distance, payment types, and fare breakdown.
-
-Location Lookup (Location Table.xlsx): Dimension table mapping LocationID to Borough, Zone, and Service Zone.
-
-Relationships: Star-schema model linked via PULocationID / DOLocationID to LocationID, integrated with custom Calendar and Dynamic Measure tables.
+uber_Analysis.SemanticModel/: Data schema, table relationships, and DAX calculations.
