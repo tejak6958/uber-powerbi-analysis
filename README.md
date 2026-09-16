@@ -1,11 +1,12 @@
 
 # Uber Analytics & Ride Insights Dashboard
+Problem Statement & Objective
+
+Analyze Uber trip data to uncover demand patterns, evaluate fare dynamics, optimize route efficiency, and deliver actionable insights for pricing and resource allocation.
+
 ![Dashboard Overview](overview_sc.png)
 ![Time Insights](Time%20Sc.png)
 ![Dashboard Info](Details.png)
-
-Problem Statement & Objective
-Analyze Uber trip data to uncover demand patterns, evaluate fare dynamics, optimize route efficiency, and deliver actionable insights for pricing and resource allocation.
 
 Technical Approach & Methodology
 Data Modeling: Built a Star-Schema model connecting the Trip Details fact table to Location Lookup and dynamic Calendar dimension tables via PULocationID / DOLocationID.
