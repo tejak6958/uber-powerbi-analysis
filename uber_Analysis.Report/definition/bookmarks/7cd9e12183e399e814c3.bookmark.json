@@ -1,0 +1,339 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Show Details Page",
+  "name": "7cd9e12183e399e814c3",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "c7a3f48251950471cebc",
+    "sections": {
+      "c7a3f48251950471cebc": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "ce61727b16bab9d0057e",
+              "type": "Categorical",
+              "expression": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Trip Details"
+                    }
+                  },
+                  "Property": "Total Bookings"
+                }
+              },
+              "howCreated": 5
+            },
+            {
+              "name": "f5a32370e63805b11c16",
+              "type": "Categorical",
+              "expression": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Trip Details"
+                    }
+                  },
+                  "Property": "Total Bookings Value"
+                }
+              },
+              "howCreated": 5
+            },
+            {
+              "name": "a694381372d3becc3b77",
+              "type": "Categorical",
+              "expression": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Trip Details"
+                    }
+                  },
+                  "Property": "Total Trip Distance Measure"
+                }
+              },
+              "howCreated": 5
+            }
+          ]
+        },
+        "visualContainers": {
+          "6950d3b7a92cdba07b70": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "81db63e97230d8900141": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "61c86b45950e0638424c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "e9a3a4e703cd2b59e2b1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "faef257b2b8676bb5636",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Trip ID"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "43ac9cf68bb9dedc411a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Pickup Date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4258c8b0be679e6d233c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Vehicle"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6c32fb27ab76c43263b5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Payment_type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "da83f2b4b80ee25d62ab",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Trip Details"
+                            }
+                          },
+                          "Property": "passenger_count"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "679f0826094d6212077d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Total Trip Distance Measure"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4a3dfe99740a73921143",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Total Bookings Value"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8b6d97a9d0067b9006d3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Location Table"
+                        }
+                      },
+                      "Property": "Location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "854ef3226c1ddeb8806c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Dropoff Location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3dcaa8af42d2580c0073",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Total Bookings"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Trip Details"
+                        }
+                      },
+                      "Property": "Trip ID"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "6dc2c46e87aac2d1ebdd": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "03d57507679ba3479e54": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "729c63dde22d93c59c9a": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {}
+            }
+          },
+          "01727372d1eb2b068005": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "824f2e9c00b212d28e50": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a25acdceb936c32ca96d": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "cb32c8c0c4d63b922272": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "0158dafe4ce2008ac5e7": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "6513b7d100509bd8be5a": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

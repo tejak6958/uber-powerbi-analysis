@@ -1,0 +1,408 @@
+table 'Trip Details'
+	lineageTag: 20a78c5d-c34a-40ec-bfc0-49b98aaadb8d
+
+	measure 'Total Bookings' = DISTINCTCOUNT('Trip Details'[Trip ID] )
+		formatString: 0.0
+		lineageTag: 263371c8-71bc-421d-b09d-227ddb930548
+
+		changedProperty = IsHidden
+
+	measure 'Total Bookings Value' = ```
+			sum('Trip Details'[fare_amount]) + SUM('Trip Details'[Surge Fee]) 
+			```
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		lineageTag: 0126abd1-1756-40cc-9b9f-51bb63183c3e
+
+		changedProperty = IsHidden
+
+	measure 'Avg Booking Value' = divide([Total Bookings Value], [Total Bookings],BLANK())
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		lineageTag: 064564e5-28b4-467f-9068-b1d32be16505
+
+		changedProperty = IsHidden
+
+	measure 'Avg Trip Time' = ```
+			var avgtime = round(AVERAGEX('Trip Details',DATEDIFF('Trip Details'[Pickup Time],'Trip Details'[Drop Off Time],MINUTE) ),0)
+			return 
+			CONCATENATE(avgtime," min")
+			```
+		lineageTag: 5deac952-2fb4-4169-804d-f7c7e87b417b
+
+		changedProperty = IsHidden
+
+	measure 'Total Trip Distance' = ```
+			
+			 VAR totalmiles =  SUM('Trip Details'[trip_distance]) / 1000
+			  RETURN
+			  CONCATENATE(FORMAT(totalmiles,"0"),"K miles")
+			```
+		lineageTag: 24f0f80c-336b-41d2-8feb-6191d085e951
+
+		changedProperty = IsHidden
+
+	measure 'Avg Trip Distance' = ```
+			
+			Var avgmiles = round(AVERAGE('Trip Details'[trip_distance]),0.0)
+			
+			return 
+			CONCATENATE(avgmiles," miles")
+			```
+		lineageTag: ae64ce88-aaae-42d7-8eb3-41cd09241717
+
+		changedProperty = IsHidden
+
+	measure 'Total Trip Distance Measure' = SUM('Trip Details'[trip_distance])
+		lineageTag: f39c489d-4f50-402d-b834-96940fda82f6
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Title for Grid' = "Vehicle Type Analysis"
+		lineageTag: 22386c6b-e1f9-4c5b-9e9d-90ff30bc743d
+
+		changedProperty = IsHidden
+
+	measure 'Most Frequent Pickup Point' = ```
+			
+			
+			VAR Pickpoint = TOPN(1, 
+			                     SUMMARIZE('Trip Details','Location Table'[Location], "Pick Point", COUNT('Trip Details'[Trip ID]))
+			                     ,[Pick Point],DESC)
+			
+			RETURN CONCATENATEX(Pickpoint,'Location Table'[Location], ",")
+			```
+		lineageTag: f5a8346e-79a6-4f06-9254-2012ae2f03fe
+
+		changedProperty = IsHidden
+
+	measure 'Most Frequent Dropoff Point' = ```
+			
+			// Step 1: Create a grouped table with dropoff counts using the inactive relationship
+			VAR DropoffCounts = 
+			ADDCOLUMNS(
+			    SUMMARIZE('Trip Details', 'Location Table'[Location]),
+			    "Dropoffcount",
+			    CALCULATE(COUNT('Trip Details'[Trip ID]),
+			            USERELATIONSHIP('Trip Details'[DOLocationID],'Location Table'[LocationID]))
+			    )
+			 /* Step 2: Rank the locations by count. 
+			   Using DENSE ensures ties share the same rank. */
+			  VAR RankedDropOff = 
+			                ADDCOLUMNS
+			                (
+			                DropoffCounts, "Rank",
+			                RANKX(DropoffCounts,[Dropoffcount],,DESC,Dense)
+			                )
+			// Step 3: Filter for top ranked location(s) and combine as a string                
+			VAR TopDropOff = 
+			        FILTER(RankedDropOff, [Rank] = 1)
+			
+			Return CONCATENATEX(TopDropOff, 'Location Table'[Location],",")
+			
+			
+			```
+		lineageTag: 4261a767-e60b-418f-80bc-78983bab2374
+
+		changedProperty = IsHidden
+
+	measure 'Farthest Trip' = ```
+			
+			VAR MaxDistance = MAX('Trip Details'[trip_distance])
+			
+			VAR PickupLocation =
+			   LOOKUPVALUE('Location Table'[Location],
+			                'Location Table'[LocationID],
+			                CALCULATE(
+			                    SELECTEDVALUE('Trip Details'[PULocationID]),
+			                                  'Trip Details'[trip_distance] = MaxDistance
+			                                  )
+			            )
+			   
+			
+			VAR DropoffLocation = 
+			 LOOKUPVALUE('Location Table'[Location],
+			                'Location Table'[LocationID],
+			                CALCULATE(
+			                    SELECTEDVALUE('Trip Details'[DOLocationID]),
+			                                  'Trip Details'[trip_distance] = MaxDistance
+			                                  )
+			            )
+			   
+			
+			return "Pickup: " & PickupLocation & " → Drop-Off: " & DropoffLocation & " (" & FORMAT(MaxDistance, "0.0") & "Miles)" 
+			```
+		lineageTag: 3a413db7-7b48-4e1e-ae4c-4cada2aa5ced
+
+		changedProperty = IsHidden
+
+	measure 'Title for Location' = "Location Analysis"
+		lineageTag: 84010079-3eef-4c46-a62c-4038c77ae3ac
+
+		changedProperty = IsHidden
+
+	measure 'Title for pickup time' =
+			SELECTEDVALUE('Dynamic Measure'[Dynamic Title]) & " by Pickup Time"
+			/* selectedvalue returns value of a column where there is one distinct value present in the filter
+			  mostly used in card and header formatting */
+		lineageTag: c7f154c6-b630-4731-bf2f-2e823a16bdbf
+
+	measure 'Title for Day Name' =
+			SELECTEDVALUE('Dynamic Measure'[Dynamic Title]) & " by Day Name"
+			/* selectedvalue returns value of a column where there is one distinct value present in the filter
+			  mostly used in card and header formatting */
+		lineageTag: 8501e891-cf8e-4626-a30a-370e53991c8d
+
+	measure 'Title for Hour & Day' =
+			SELECTEDVALUE('Dynamic Measure'[Dynamic Title]) & " by Hour & Day"
+			/* selectedvalue returns value of a column where there is one distinct value present in the filter
+			  mostly used in card and header formatting */
+		lineageTag: d56f2c84-9b9b-450b-b8ed-bf6965c2e9a6
+
+	column 'Trip ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 282272b8-53c5-4730-aa9a-36c90e1b27ee
+		summarizeBy: count
+		sourceColumn: Trip ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pickup Time'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fbb96ad9-fd34-4df8-8231-ea90b9b1d6f1
+		summarizeBy: none
+		sourceColumn: Pickup Time
+
+		variation Variation
+			isDefault
+			relationship: cfa47e0a-7d38-4f87-99c2-cc747e7499a4
+			defaultHierarchy: LocalDateTable_d806e928-fd38-41d7-9190-ab093c44837a.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Drop Off Time'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0ec9b7bf-ef1d-4d64-8afe-c4763e88a91e
+		summarizeBy: none
+		sourceColumn: Drop Off Time
+
+		variation Variation
+			isDefault
+			relationship: df59b9a1-8bdb-4e95-9161-bb12af0ac37b
+			defaultHierarchy: LocalDateTable_326580a5-97b5-45a2-8ce5-ce0545051567.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column passenger_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 766de40c-029f-418c-8044-24941681aa51
+		summarizeBy: sum
+		sourceColumn: passenger_count
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column trip_distance
+		dataType: double
+		lineageTag: 351869c3-8767-46ee-970a-bed463c2cf11
+		summarizeBy: sum
+		sourceColumn: trip_distance
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PULocationID
+		dataType: int64
+		formatString: 0
+		lineageTag: 40544577-237b-4555-8ed0-705fec629ba0
+		summarizeBy: none
+		sourceColumn: PULocationID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOLocationID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c8363ee-aca5-4d52-ac22-837a74a9768e
+		summarizeBy: count
+		sourceColumn: DOLocationID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fare_amount
+		dataType: double
+		lineageTag: e0841d42-90d2-411c-8028-0f19c8554a3b
+		summarizeBy: sum
+		sourceColumn: fare_amount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Surge Fee'
+		dataType: double
+		lineageTag: 61f3ab46-463d-497d-bbf6-483cb4185a3b
+		summarizeBy: sum
+		sourceColumn: Surge Fee
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Vehicle
+		dataType: string
+		lineageTag: 05debe67-f45e-4225-880e-a195d1c01ac8
+		summarizeBy: none
+		sourceColumn: Vehicle
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payment_type
+		dataType: string
+		lineageTag: 4de2da49-0946-44dd-b49d-c908a1092865
+		summarizeBy: none
+		sourceColumn: Payment_type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pickup Date' = DATE(YEAR('Trip Details'[Pickup Time]),MONTH('Trip Details'[Pickup Time]),DAY('Trip Details'[Pickup Time]))
+		formatString: Long Date
+		lineageTag: f5e715ae-ed6b-49dc-8338-13e543ac54c2
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Trip Type(Day/Night)' = ```
+			
+			VAR HourOfDay = HOUR('Trip Details'[Pickup Time])
+			
+			RETURN
+			if (HourOfDay >= 18 || HourOfDay < 6,  "Night_Shift" , "Day Shift")
+			
+			```
+		lineageTag: 40fd1358-2d67-4fb1-bbe8-0123e2808c95
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pickup Time(HH MM SS)' = TIME(HOUR('Trip Details'[Pickup Time]),MINUTE('Trip Details'[Pickup Time]),SECOND('Trip Details'[Pickup Time]))
+		formatString: Long Time
+		lineageTag: fd89d5a2-5ea6-43df-a2f3-dadb952e08d4
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Trip Details","TableItemName":"Pickup Time(HH MM SS) (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Pickup Time(HH MM SS) (bins)' =
+			IF(
+				ISBLANK('Trip Details'[Pickup Time(HH MM SS)]),
+				BLANK(),
+				(INT(('Trip Details'[Pickup Time(HH MM SS)] * 1440) / 10) * 10) / 1440
+			)
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 70f6c06b-67ef-4e55-9801-3a248cd60d79
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Trip Details"
+				          }
+				        },
+				        "Property": "Pickup Time(HH MM SS)"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 10.0,
+				      "unit": 10
+				    }
+				  }
+				}
+
+		changedProperty = IsHidden
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"t","Entity":"Trip Details"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"Pickup Time(HH MM SS)"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"Pickup Time(HH MM SS)"}},"Size":10.0,"TimeUnit":6}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pickup Hour' = HOUR('Trip Details'[Pickup Time])
+		formatString: 0
+		lineageTag: 9cbbbe1c-6729-4306-b572-38bbd526970c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dropoff Location' =
+			
+			var currentDO = 'Trip Details'[DOLocationID]
+			
+			RETURN
+			LOOKUPVALUE('Location Table'[Location],'Location Table'[LocationID],currentDO)
+			--- here we cannot directly use lookupvalue to get dropofflocation since converting text to text integer is not possible so adding an var will allow us to do it
+		lineageTag: 5bca8581-f108-499a-9c1f-c7a135eca84e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Trip Details' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("F:\power bi\uber_analysis\Uber Trip Details.xlsx"), null, true),
+				    #"Trip Details_Sheet" = Source{[Item="Trip Details",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Trip Details_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Trip ID", Int64.Type}, {"Pickup Time", type datetime}, {"Drop Off Time", type datetime}, {"passenger_count", Int64.Type}, {"trip_distance", type number}, {"PULocationID", Int64.Type}, {"DOLocationID", Int64.Type}, {"fare_amount", type number}, {"Surge Fee", type number}, {"Vehicle", type text}, {"Payment_type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

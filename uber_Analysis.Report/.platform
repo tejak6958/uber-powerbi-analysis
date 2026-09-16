@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "uber_Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3a3acb9b-f15f-4286-8153-d6df4a721015"
+  }
+}

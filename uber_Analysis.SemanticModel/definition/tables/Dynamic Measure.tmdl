@@ -1,0 +1,65 @@
+table 'Dynamic Measure'
+	lineageTag: e0fd13f3-e88f-4501-94d7-cd8b24b741e4
+
+	column 'Dynamic Measure'
+		lineageTag: f0b5d301-1da0-4959-a319-2456949249b5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Dynamic Measure Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Dynamic Measure Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dynamic Measure Fields'
+		lineageTag: e954018c-9981-4640-9e9f-d4262268f342
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Dynamic Measure Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dynamic Measure Order'
+		formatString: 0
+		lineageTag: 2ddc4c7e-9b7f-43dc-ae95-4bd5e3dad776
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dynamic Title' =
+			
+			if( 'Dynamic Measure'[Dynamic Measure Order] = 0, "Total Bookings",
+			if( 'Dynamic Measure'[Dynamic Measure Order] = 1, "Total Bookings Value",
+			if( 'Dynamic Measure'[Dynamic Measure Order] = 2, "Total Trip Distance",
+			"others"
+			)
+			)
+			)
+			/* in order to create an dynamic title we must first unhidden column in dynamic measure
+			then we must use the dynamic order to create those titles using the if statement */
+		lineageTag: 2ff08e4c-a0c2-4dd0-bd61-29dc2fbc4cbb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dynamic Measure' = calculated
+		mode: import
+		source = ```
+				{
+				    ("Total Bookings", NAMEOF('Trip Details'[Total Bookings]), 0),
+				    ("Total Bookings Value", NAMEOF('Trip Details'[Total Bookings Value]), 1),
+				    ("Total Trip Distance", NAMEOF('Trip Details'[Total Trip Distance Measure]), 2)
+				}
+				
+				```
+
+	annotation PBI_Id = 234ef54375924e5b9016d806ad78ac67
+

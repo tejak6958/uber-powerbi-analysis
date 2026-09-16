@@ -1,0 +1,43 @@
+table 'Calendar Table'
+	lineageTag: e4f065e8-cb8c-4897-a228-82538fe83643
+
+	column Date
+		formatString: Long Date
+		lineageTag: 0cf1ce5a-0580-4970-88ed-1ee7a09300af
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 1dd57527-7b72-4f54-ac0a-9bb539bb5820
+			defaultHierarchy: LocalDateTable_be3e754a-98b5-4e6e-9719-0fa25ff0a220.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Day Name' = ```
+			FORMAT('Calendar Table'[Date],"ddd") 
+			```
+		lineageTag: f114634a-ef50-4b89-87fc-01d3af1f12e4
+		summarizeBy: none
+		sortByColumn: 'Day Num'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Num' =
+			WEEKDAY('Calendar Table'[Date],2)
+			--- since day name sorts according to alphabetical order so we wanted to follow in order wise so we used that day num over here
+		formatString: 0
+		lineageTag: 33700fea-c88a-44d7-8c22-58424a6610b8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Calendar Table' = calculated
+		mode: import
+		source = CALENDAR(MIN('Trip Details'[Pickup Date]),MAX('Trip Details'[Pickup Date]))
+
+	annotation PBI_Id = 37b6d5c05244479fbe2c25feb56050b2
+

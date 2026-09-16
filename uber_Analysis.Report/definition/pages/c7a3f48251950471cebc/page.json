@@ -1,0 +1,146 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "c7a3f48251950471cebc",
+  "displayName": "Details",
+  "displayOption": "FitToPage",
+  "height": 850,
+  "width": 1600,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ce61727b16bab9d0057e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Trip Details"
+              }
+            },
+            "Property": "Total Bookings"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "f5a32370e63805b11c16",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Trip Details"
+              }
+            },
+            "Property": "Total Bookings Value"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "a694381372d3becc3b77",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Trip Details"
+              }
+            },
+            "Property": "Total Trip Distance Measure"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "a9052183ae20d850a2bc",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "d58cf03e40e45452b9d3",
+        "boundFilter": "ce61727b16bab9d0057e",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Trip Details"
+              }
+            },
+            "Property": "Total Bookings"
+          }
+        }
+      },
+      {
+        "name": "afef5e2c27907d03b46b",
+        "boundFilter": "f5a32370e63805b11c16",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Trip Details"
+              }
+            },
+            "Property": "Total Bookings Value"
+          }
+        }
+      },
+      {
+        "name": "21abb2bc06303cd083d3",
+        "boundFilter": "a694381372d3becc3b77",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Trip Details"
+              }
+            },
+            "Property": "Total Trip Distance Measure"
+          }
+        }
+      }
+    ],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "displayArea": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Middle'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.1
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "75D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

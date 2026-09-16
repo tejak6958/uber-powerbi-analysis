@@ -1,0 +1,156 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU07",
+      "reportVersionAtImport": {
+        "visual": "2.11.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU07",
+          "path": "BaseThemes/CY26SU07.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "05b78ffac4d03bcd6270e367f7cbf048659183517822235.png",
+          "path": "05b78ffac4d03bcd6270e367f7cbf048659183517822235.png",
+          "type": "Image"
+        },
+        {
+          "name": "car2682414435528916.png",
+          "path": "car2682414435528916.png",
+          "type": "Image"
+        },
+        {
+          "name": "Copilot_20260915_130444508848347609002.png",
+          "path": "Copilot_20260915_130444508848347609002.png",
+          "type": "Image"
+        },
+        {
+          "name": "database22225217998414892.png",
+          "path": "database22225217998414892.png",
+          "type": "Image"
+        },
+        {
+          "name": "download20668799031663676.png",
+          "path": "download20668799031663676.png",
+          "type": "Image"
+        },
+        {
+          "name": "download5777922921013594.jpg",
+          "path": "download5777922921013594.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "home897598711289518.png",
+          "path": "home897598711289518.png",
+          "type": "Image"
+        },
+        {
+          "name": "images_(1)5760950382304902.jpg",
+          "path": "images_(1)5760950382304902.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "images_(2)24620060279554778.jpg",
+          "path": "images_(2)24620060279554778.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "images21530158569388058.png",
+          "path": "images21530158569388058.png",
+          "type": "Image"
+        },
+        {
+          "name": "images4712662736967197.jpg",
+          "path": "images4712662736967197.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "info7495284699754096.png",
+          "path": "info7495284699754096.png",
+          "type": "Image"
+        },
+        {
+          "name": "map-pin-icons-showing-routes-n46386829562440957.jpg",
+          "path": "map-pin-icons-showing-routes-n46386829562440957.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "money-bag2672451590657353.png",
+          "path": "money-bag2672451590657353.png",
+          "type": "Image"
+        },
+        {
+          "name": "refresh-button9888229296921762.png",
+          "path": "refresh-button9888229296921762.png",
+          "type": "Image"
+        },
+        {
+          "name": "uber_data_analysis_project10382709214934438.avif",
+          "path": "uber_data_analysis_project10382709214934438.avif",
+          "type": "Image"
+        },
+        {
+          "name": "UberXL_Premium30490223352112933.png",
+          "path": "UberXL_Premium30490223352112933.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true,
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
+  }
+}
