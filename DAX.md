@@ -43,4 +43,3 @@ Common DAX patterns used across the model:
 - Relationship control: `USERELATIONSHIP` for alternate join paths.
 - Text & formatting: `FORMAT`, `CONCATENATE`, `CONCATENATEX`.
 
-Use this file as a quick reference. If you want each measure verbatim in full DAX (copied exactly), I can generate `DAX_FULL.md` containing every measure's full formula.
