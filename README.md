@@ -1,31 +1,31 @@
 
-<h1 style="color:#08306B; font-size:20px;">Uber Analytics & Ride Insights Dashboard</h1>
+![Main Heading](assets/main_heading.svg)
 
 ![Dashboard Overview](overview_sc.png)
 ![Time Insights](Time%20Sc.png)
 ![Dashboard Info](Details.png)
 
-<h2 style="color:#0ea5e9; font-size:13px;">Problem Statement & Objective</h2>
+![Problem Statement & Objective](assets/sub_problem.svg)
 
 Analyze Uber trip data to uncover demand patterns, evaluate fare dynamics, optimize route efficiency, and deliver actionable insights for pricing and resource allocation.
 
-<h2 style="color:#0ea5e9; font-size:13px;">Technical Approach & Methodology</h2>
+![Technical Approach & Methodology](assets/sub_technical.svg)
 
-<p><strong style="color:#0ea5e9; font-size:12px;">Data Modeling:</strong> Built a star-schema connecting the `Trip Details` fact to `Location Table` and calendar/helper tables via `PULocationID` / `DOLocationID`.</p>
+**Data Modeling:** Built a star-schema connecting the `Trip Details` fact to `Location Table` and calendar/helper tables via `PULocationID` / `DOLocationID`.
 
-<p><strong style="color:#0ea5e9; font-size:12px;">DAX & Dynamic Analytics:</strong> Custom measures and a `Dynamic Measure` parameter enable KPI switching and dynamic titles.</p>
+**DAX & Dynamic Analytics:** Custom measures and a `Dynamic Measure` parameter enable KPI switching and dynamic titles.
 
-<p><strong style="color:#0ea5e9; font-size:12px;">Spatial & Temporal Analysis:</strong> Mapped location IDs to zones and analyzed bookings by hour/day to identify peaks.</p>
+**Spatial & Temporal Analysis:** Mapped location IDs to zones and analyzed bookings by hour/day to identify peaks.
 
-<p><strong style="color:#0ea5e9; font-size:12px;">UI/UX Navigation:</strong> Interactive canvas with bookmarks and quick navigation for drill-through and context-aware headers.</p>
+**UI/UX Navigation:** Interactive canvas with bookmarks and quick navigation for drill-through and context-aware headers.
 
-<h2 style="color:#0ea5e9; font-size:13px;">Key Solutions Delivered</h2>
+![Key Solutions Delivered](assets/sub_key.svg)
 
-<p><strong style="color:#0ea5e9; font-size:12px;">Demand Identification:</strong> Pinpointed peak hours and high-volume zones for driver allocation.</p>
+**Demand Identification:** Pinpointed peak hours and high-volume zones for driver allocation.
 
-<p><strong style="color:#0ea5e9; font-size:12px;">Revenue Breakdown:</strong> Analysed base fare vs surge, and payment-mode splits.</p>
+**Revenue Breakdown:** Analysed base fare vs surge, and payment-mode splits.
 
-<h2 style="color:#0ea5e9; font-size:13px;">Repository Structure</h2>
+![Repository Structure](assets/sub_repo.svg)
 
 <ul>
 	<li><strong>uber_Analysis.pbip</strong> — Power BI project file.</li>
