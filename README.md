@@ -1,30 +1,35 @@
 
 # Uber Analytics & Ride Insights Dashboard
-Problem Statement & Objective
-
-Analyze Uber trip data to uncover demand patterns, evaluate fare dynamics, optimize route efficiency, and deliver actionable insights for pricing and resource allocation.
 
 ![Dashboard Overview](overview_sc.png)
 ![Time Insights](Time%20Sc.png)
 ![Dashboard Info](Details.png)
 
-Technical Approach & Methodology
-Data Modeling: Built a Star-Schema model connecting the Trip Details fact table to Location Lookup and dynamic Calendar dimension tables via PULocationID / DOLocationID.
+<p><strong style="color:#0ea5e9; font-size:13px;">Problem Statement & Objective</strong></p>
 
-DAX & Dynamic Analytics: Developed custom DAX measures and field parameters to enable dynamic KPI switching across visual charts.
+Analyze Uber trip data to uncover demand patterns, evaluate fare dynamics, optimize route efficiency, and deliver actionable insights for pricing and resource allocation.
 
-Spatial & Temporal Analysis: Mapped numerical location IDs to actual boroughs and zones, analyzing booking trends across peak and off-peak hours.
+<p><strong style="color:#0ea5e9; font-size:13px;">Technical Approach & Methodology</strong></p>
 
-UI/UX Navigation: Designed an interactive canvas with page navigators, dynamic bookmarks, and URL action buttons linking to source documentation.
+<p><strong style="color:#0ea5e9; font-size:12px;">Data Modeling:</strong> Built a Star-Schema model connecting the `Trip Details` fact table to `Location Table` and calendar/helper tables via `PULocationID` / `DOLocationID`.</p>
 
-Key Solutions Delivered
-Demand Identification: Pinpointed peak ride hours and high-volume pickup/drop-off zones for strategic driver placement.
+<p><strong style="color:#0ea5e9; font-size:12px;">DAX & Dynamic Analytics:</strong> Custom measures and a `Dynamic Measure` parameter enable on-canvas KPI switching and dynamic titles.</p>
 
-Revenue Breakdown: Evaluated base fare vs. surge pricing trends and analyzed payment mode distributions (Cash vs. Card).
+<p><strong style="color:#0ea5e9; font-size:12px;">Spatial & Temporal Analysis:</strong> Mapped location IDs to zones and analyzed bookings by hour/day to identify peaks.</p>
 
-Repository Structure
-uber_Analysis.pbip: Main Power BI Project file.
+<p><strong style="color:#0ea5e9; font-size:12px;">UI/UX Navigation:</strong> Interactive canvas with bookmarks and quick navigation for drill-through and context-aware headers.</p>
 
-uber_Analysis.Report/: Page layouts, visual configs, and visual theme settings.
+<p><strong style="color:#0ea5e9; font-size:13px;">Key Solutions Delivered</strong></p>
 
-uber_Analysis.SemanticModel/: Data schema, table relationships, and DAX calculations.
+<p><strong style="color:#0ea5e9; font-size:12px;">Demand Identification:</strong> Pinpointed peak hours and high-volume zones for driver allocation.</p>
+
+<p><strong style="color:#0ea5e9; font-size:12px;">Revenue Breakdown:</strong> Analysed base fare vs surge, and payment-mode splits.</p>
+
+<p><strong style="color:#0ea5e9; font-size:13px;">Repository Structure</strong></p>
+
+<ul>
+	<li><strong>uber_Analysis.pbip</strong> — Power BI project file.</li>
+	<li><strong>uber_Analysis.Report/</strong> — Extracted report JSON, visuals, and static resources.</li>
+	<li><strong>uber_Analysis.SemanticModel/</strong> — TMDL model artifacts and `definition.pbism`.</li>
+	<li><strong>dax_measures/</strong> — DAX reference files (`DAX.md`, `DAX_FULL.md`).</li>
+</ul>
