@@ -198,4 +198,3 @@ if( 'Dynamic Measure'[Dynamic Measure Order] = 2, "Total Trip Distance",
 ```
 
 ---
-This file lists the verbatim DAX found in the model files. If you'd like this imported into a documentation page or split into separate files per-measure, tell me which format you prefer.
